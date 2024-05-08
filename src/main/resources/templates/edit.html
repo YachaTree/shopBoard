@@ -13,11 +13,11 @@
 <div th:replace = "~{ nav.html::navbar}"></div>
 
 
-<form action="/edit" method="post">
+<form action="/edit" method="POST"> <!--form 태그 사용하면 GET이랑 POST만 사용가능하고 PUT, DELETE 사용안됨 -->
     <input name="id" th:value="${data.id}" style="display:none">
     <input name="title" th:value="${data.title}">
     <input name="price" th:value="${data.price}">
-    <button type="submit">전송</button>
+    <button type="submit">수정</button>
 </form>
 
 

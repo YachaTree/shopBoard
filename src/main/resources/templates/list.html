@@ -9,32 +9,38 @@
     <link href="/main.css" rel="stylesheet"/>
 </head>
 <body>
-<div th:replace = "~{ nav.html::navbar}"></div>
+<!-- Nav -->
+<div th:replace = "~{ nav.html::navbar }"></div>
 
 <div class="card" th:each="i : ${items}">
     <img src="https://placehold.co/300">
     <div>
         <h4 th:text="${i.title}">바지</h4>
+        <!--보통은 서버에서 보낸 변수를 넣고 싶으면 ${ } 안에 넣으면 되는데 근데 href안에는 @{ } 부터 시작 -->
         <a th:href="@{'/detail/' + ${i.id} }">링크</a>
         <p th:text="${i.price}">8억</p>
-        <a th:href="@{'/edit/' + ${i.id}}">수정</a>
-        <a th:href="@{'/delete/' + ${i.id}}">삭제</a>
+        <a th:href="@{'/edit/' + ${i.id}}">✏️</a>️
+        <span th:onclick="fetch('/delete?id=[[${i.id}]]', {method : 'DELETE'})
+            .then(r => r.text())
+            .then(() => {
+                location.reload();
+            })
+
+        ">🗑</span>
     </div>
 </div>
 
-<button class="btn">버튼</button>
+<!--️<script>&lt;!&ndash; html 파일 로드시 1회 실행  &ndash;&gt;-->
+<!--    document.querySelectorAll('.btn')[0],addEventListener('click', function(){-->
+<!--    fetch('/delete/', {  &lt;!&ndash; 이 URL로 GET요청 날려줌 &ndash;&gt;-->
+<!--        method : 'POST',-->
+<!--        headers : {'Content-Type' : 'application/json'},-->
+<!--        body : JSON.stringify({name : 'kim'})-->
+<!--    })-->
+<!--    })-->
 
-<script><!-- html 파일 로드시 1회 실행  -->
-    document.querySelectorAll('.btn')[0],addEventListener('click', function(){
-    fetch('/test', {
-        method : 'POST',
-        headers : {'Content-Type' : 'application/json'},
-        body : JSON.stringify({name : 'kim'})
-    })
-    })
-
-    fetch('/url') <!--이 Url로 get요청 날려줌 -->
-</script>
+<!--    fetch('/url') &lt;!&ndash;이 Url로 get요청 날려줌 &ndash;&gt;-->
+<!--</script>-->
 
 </body>
 </html>
