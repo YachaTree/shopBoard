@@ -9,13 +9,13 @@
     <link href="/main.css" rel="stylesheet"/>
 </head>
 <body>
-
 <div th:replace = "~{ nav.html::navbar}"></div>
-<form action="/add" method="POST">
 
-   <input name="title">
-    <input name="price">
-    <button type="submit">아이템 등록</button>
+<form action="/member" method="POST">
+    <input name="name" placeholder="이름">
+    <input name="username" placeholder="아이디">
+    <input name="password" type="password" placeholder="비밀번호">
+    <button type="submit">전송</button>
 </form>
 
 
